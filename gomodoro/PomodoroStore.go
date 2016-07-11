@@ -1,8 +1,9 @@
-package qomodoro
+package gomodoro
 
 import (
 	"encoding/json"
 	"log"
+	"net/http"
 	"time"
 )
 
@@ -39,8 +40,8 @@ func NewPomodoroStore(pomodoroChan <-chan []byte) (ps *PomodoroStore) {
 		chPomodoro: pomodoroChan,
 		chRequest:  make(chan *PomodoroRequest),
 	}
-    go ps.run()
-    return ps
+	go ps.run()
+	return ps
 }
 
 //receives json encoded pomodoros from a channel and adds it to the maps
@@ -53,13 +54,13 @@ func (self *PomodoroStore) run() {
 			continue
 		}
 		if _, ok := self.users[pomodoro.user]; !ok {
-			self.users[pomodoro.user] = make([]*Pomodoro, 1024, 1024) //TODO check how the slices function
+			self.users[pomodoro.user] = make([]*Pomodoro, 1024)
 		}
-		append(self.users[pomodoro.user], pomodoro) //TODO
+		self.users[pomodoro.user] = append(self.users[pomodoro.user], pomodoro)
 		if _, ok := self.flags[pomodoro.flag]; !ok {
-			self.users[pomodoro.flag] = make([]*Pomodoro, 1024, 1024) //TODO check how the slices function
+			self.users[pomodoro.flag] = make([]*Pomodoro, 1024)
 		}
-		append(self.flags[pomodoro.flag], pomodoro) //TODO
+		self.flags[pomodoro.flag] = append(self.flags[pomodoro.flag], pomodoro) //TODO
 	}
 }
 

@@ -1,4 +1,4 @@
-package qomodoro
+package gomodoro
 
 import (
 	"encoding/binary"
@@ -11,11 +11,12 @@ import (
 	"path"
 )
 
-const appName string = "qomodoro"
+const appName string = "gomodoro"
 
 type EventStore struct {
-	db         *leveldb.DB
-	eventCount uint64
+	db          *leveldb.DB
+	eventCount  uint64
+	fwdChannels []chan[]byte
 }
 
 func NewEventStore() *EventStore {
@@ -27,7 +28,7 @@ func NewEventStore() *EventStore {
 		log.Fatal(err)
 	}
 	if _, err = os.Stat(path.Join(usr.HomeDir, "."+appName)); os.IsNotExist(err) {
-		os.Mkdir(path.Join(usr.HomeDir, appName), os.ModeDir)
+		os.Mkdir(path.Join(usr.HomeDir, appName), 0755) //TODO .cache
 	}
 	es.db, err = leveldb.OpenFile(path.Join(usr.HomeDir, appName, "events"), nil)
 	if err != nil {
@@ -45,6 +46,8 @@ func NewEventStore() *EventStore {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	es.fwdChannels = make([]chan[]byte, 10)
 	return es
 }
 
@@ -60,6 +63,16 @@ func (self *EventStore) ServeHTTP(res http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		log.Fatal(err)
 	}
+	log.Println(key, value)
 	self.db.Put(key, value, nil)
 	res.Write(key)
+	for _, fwdCh := range self.fwdChannels {
+		fwdCh <- value
+	}
+}
+
+func (self *EventStore) FwdChannel() chan []byte {
+	fwdCh := make(chan []byte)
+	self.fwdChannels = append(self.fwdChannels, fwdCh)
+	return fwdCh
 }
