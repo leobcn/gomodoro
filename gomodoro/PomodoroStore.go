@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"time"
+	"strings"
 )
 
 type Pomodoro struct {
@@ -65,5 +66,11 @@ func (self *PomodoroStore) run() {
 }
 
 func (self *PomodoroStore) ServeHTTP(res http.ResponseWriter, req *http.Request) {
-
+	path := strings.Split(req.URL.Path, ",")
+	//TODO length == 2
+	switch path[0] {
+	case "user":
+		pomodoros := self.users[path[1]]
+	case "flags":
+	}
 }

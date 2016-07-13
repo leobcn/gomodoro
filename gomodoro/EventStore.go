@@ -28,9 +28,9 @@ func NewEventStore() *EventStore {
 		log.Fatal(err)
 	}
 	if _, err = os.Stat(path.Join(usr.HomeDir, "."+appName)); os.IsNotExist(err) {
-		os.Mkdir(path.Join(usr.HomeDir, appName), 0755) //TODO .cache
+		os.Mkdir(path.Join(usr.HomeDir, "."+appName), 0755) //TODO .cache
 	}
-	es.db, err = leveldb.OpenFile(path.Join(usr.HomeDir, appName, "events"), nil)
+	es.db, err = leveldb.OpenFile(path.Join(usr.HomeDir, "."+appName, "events"), nil)
 	if err != nil {
 		log.Fatal(err)
 	}
