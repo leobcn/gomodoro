@@ -1,0 +1,371 @@
+{
+  "resourceName": "people/104926875328983042134",
+  "etag": "+uFK2zSDULI=",
+  "metadata": {
+    "sources": [
+      {
+        "type": "PROFILE",
+        "id": "104926875328983042134"
+      }
+    ],
+    "objectType": "PERSON"
+  },
+  "locales": [
+    {
+      "metadata": {
+        "primary": true,
+        "source": {
+          "type": "ACCOUNT",
+          "id": "104926875328983042134"
+        }
+      },
+      "value": "en"
+    }
+  ],
+  "names": [
+    {
+      "metadata": {
+        "primary": true,
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "displayName": "Vladimír “micro” Magyar",
+      "familyName": "Magyar",
+      "givenName": "Vladimír",
+      "displayNameLastFirst": "Magyar, Vladimír"
+    }
+  ],
+  "nicknames": [
+    {
+      "metadata": {
+        "primary": true,
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "value": "microo8"
+    },
+    {
+      "metadata": {
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "value": "micro",
+      "type": "GPLUS"
+    }
+  ],
+  "coverPhotos": [
+    {
+      "metadata": {
+        "primary": true,
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "url": "https://lh3.googleusercontent.com/-HkYXUU1lef4/VTi_SdSUZwI/AAAAAAAAqUc/f4rDTm9LLRsBz8hDZWKFR1MbiQnhg8zWwCL0B/s1000-fcrop64=1,10f50000f073e0c2/10819-buddha-1920x1080-digital-art-wallpaper.png"
+    }
+  ],
+  "photos": [
+    {
+      "metadata": {
+        "primary": true,
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "url": "https://lh6.googleusercontent.com/-5CHDbtkORCM/AAAAAAAAAAI/AAAAAAAAqJY/Zr_7F1qob1o/photo.jpg"
+    }
+  ],
+  "genders": [
+    {
+      "metadata": {
+        "primary": true,
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "value": "male",
+      "formattedValue": "Male"
+    }
+  ],
+  "residences": [
+    {
+      "metadata": {
+        "primary": true,
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "value": "Bratislava, Slovakia",
+      "current": true
+    },
+    {
+      "metadata": {
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "value": "Nové Zámky, Slovakia"
+    }
+  ],
+  "emailAddresses": [
+    {
+      "metadata": {
+        "primary": true,
+        "verified": true,
+        "source": {
+          "type": "ACCOUNT",
+          "id": "104926875328983042134"
+        }
+      },
+      "value": "magyarvladimir@gmail.com"
+    }
+  ],
+  "taglines": [
+    {
+      "metadata": {
+        "primary": true,
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "value": "If debugging is the process of removing software bugs, then programming must be the process of putting them in."
+    }
+  ],
+  "urls": [
+    {
+      "metadata": {
+        "primary": true,
+        "verified": true,
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "value": "https://plus.google.com/104926875328983042134",
+      "type": "profile",
+      "formattedType": "Profile"
+    },
+    {
+      "metadata": {
+        "verified": true,
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "value": "http://twitter.com/microo8",
+      "type": "microo8",
+      "formattedType": "microo8"
+    },
+    {
+      "metadata": {
+        "verified": true,
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "value": "http://www.youtube.com/user/MICROO0",
+      "type": "Vladimír Magyar",
+      "formattedType": "Vladimír Magyar"
+    },
+    {
+      "metadata": {
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "value": "https://github.com/microo8",
+      "type": "github",
+      "formattedType": "github"
+    },
+    {
+      "metadata": {
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "value": "https://github.com/microo8",
+      "type": "github",
+      "formattedType": "github"
+    }
+  ],
+  "organizations": [
+    {
+      "metadata": {
+        "primary": true,
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "type": "school",
+      "formattedType": "school",
+      "startDate": {
+        "year": 2011,
+        "month": 1,
+        "day": 1
+      },
+      "endDate": {
+        "year": 2013,
+        "month": 1,
+        "day": 1
+      },
+      "name": "Univerzita Komenského v Bratislave",
+      "title": "Fakulta matematiky, fyziky a informatiky - aplikovaná informatika"
+    },
+    {
+      "metadata": {
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "type": "school",
+      "formattedType": "school",
+      "startDate": {
+        "year": 2008,
+        "month": 1,
+        "day": 1
+      },
+      "endDate": {
+        "year": 2011,
+        "month": 1,
+        "day": 1
+      },
+      "name": "Univerzita Komenského v Bratislave",
+      "title": "Fakulta matematiky, fyziky a informatiky - aplikovaná informatika"
+    },
+    {
+      "metadata": {
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "type": "school",
+      "formattedType": "school",
+      "startDate": {
+        "year": 2004,
+        "month": 1,
+        "day": 1
+      },
+      "endDate": {
+        "year": 2008,
+        "month": 1,
+        "day": 1
+      },
+      "name": "Stredná Priemyseľná Škola Elektrotechnická S.A.Jedlíka Nové Zámky",
+      "title": "elektrotechnika"
+    },
+    {
+      "metadata": {
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "type": "work",
+      "formattedType": "Work",
+      "startDate": {
+        "year": 2012,
+        "month": 1,
+        "day": 1
+      },
+      "endDate": {
+        "year": 2013,
+        "month": 1,
+        "day": 1
+      },
+      "current": true,
+      "name": "NWS s.r.o.",
+      "title": "programator"
+    }
+  ],
+  "occupations": [
+    {
+      "metadata": {
+        "primary": true,
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "value": "programator"
+    }
+  ],
+  "skills": [
+    {
+      "metadata": {
+        "primary": true,
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "value": "programmer :P"
+    }
+  ],
+  "braggingRights": [
+    {
+      "metadata": {
+        "primary": true,
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "value": "uz som Mgr."
+    }
+  ],
+  "relationshipStatuses": [
+    {
+      "metadata": {
+        "primary": true,
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "value": "single",
+      "formattedValue": "single"
+    }
+  ],
+  "relationshipInterests": [
+    {
+      "metadata": {
+        "primary": true,
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "value": "friend",
+      "formattedValue": "Friend"
+    },
+    {
+      "metadata": {
+        "source": {
+          "type": "PROFILE",
+          "id": "104926875328983042134"
+        }
+      },
+      "value": "networking",
+      "formattedValue": "networking"
+    }
+  ]
+}

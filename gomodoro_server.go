@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/microo8/gomodoro/gomodoro"
-	"github.com/satori/go.uuid"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
 	"log"
@@ -14,11 +13,12 @@ import (
 )
 
 var (
-	conf     *oauth2.Config
-	sessions map[string]*User
+	conf  *oauth2.Config
+	users map[string]*User
 )
 
 type User struct {
+	ID          string
 	DisplayNane string
 	GivenName   string
 	FamilyName  string
@@ -26,15 +26,42 @@ type User struct {
 	Token       *oauth2.Token
 }
 
-func userSession(req *http.Request) (*User, error) {
-	session_id, err := req.Cookie("session_id")
+func (self *User) Update() error {
+	client := conf.Client(oauth2.NoContext, self.Token)
+	profileBytes, err := client.Get("https://people.googleapis.com/v1/people/me")
 	if err != nil {
-		return nil, errors.New("no session")
+		return err
 	}
-	user, ok := sessions[session_id.Value]
+
+	profile := make(map[string]interface{})
+	err = json.NewDecoder(profileBytes.Body).Decode(&profile)
+	if err != nil {
+		return err
+	}
+	namesArray := profile["names"].([]interface{})
+	names := namesArray[0].(map[string]interface{})
+	metadata := names["metadata"].(map[string]interface{})
+	source := metadata["source"].(map[string]interface{})
+	self.ID = source["id"].(string)
+	self.DisplayNane = names["displayName"].(string)
+	self.GivenName = names["givenName"].(string)
+	self.FamilyName = names["familyName"].(string)
+	emailAddressesArray := profile["emailAddresses"].([]interface{})
+	emailAddresses := emailAddressesArray[0].(map[string]interface{})
+	self.Email = emailAddresses["value"].(string)
+	return nil
+}
+
+func userSession(req *http.Request) (*User, error) {
+	user_id, err := req.Cookie("user_id")
+	if err != nil {
+		return nil, errors.New("no user")
+	}
+	user, ok := users[user_id.Value]
 	if !ok {
-		return nil, errors.New("session_id not found")
+		return nil, errors.New("user_id not found")
 	}
+	user.Update()
 	return user, nil
 }
 
@@ -59,35 +86,15 @@ func auth(res http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	client := conf.Client(oauth2.NoContext, tok)
 
 	//get and Unmarshal profile info
-	profileBytes, err := client.Get("https://people.googleapis.com/v1/people/me")
+	user := &User{Token: tok}
+	err = user.Update()
 	if err != nil {
 		log.Fatal(err)
 	}
-	user := new(User)
-	user.Token = tok
-	profile := make(map[string]interface{})
-	err = json.NewDecoder(profileBytes.Body).Decode(&profile)
-	if err != nil {
-		log.Fatal(err)
-	}
-	namesArray := profile["names"].([]interface{})
-	names := namesArray[0].(map[string]interface{})
-	user.DisplayNane = names["displayName"].(string)
-	user.GivenName = names["givenName"].(string)
-	user.FamilyName = names["familyName"].(string)
-	emailAddressesArray := profile["emailAddresses"].([]interface{})
-	emailAddresses := emailAddressesArray[0].(map[string]interface{})
-	user.Email = emailAddresses["value"].(string)
-
-	session_id, err := uuid.NewV4().MarshalText()
-	if err != nil {
-		log.Fatal(err)
-	}
-	sessions[string(session_id)] = user
-	cookie := &http.Cookie{Name: "session_id", Value: string(session_id)}
+	users[user.ID] = user
+	cookie := &http.Cookie{Name: "user_id", Value: user.ID}
 	http.SetCookie(res, cookie)
 	res.Write([]byte(`<html><head></head><body onload="window.location='/'"></body></html>`))
 }
@@ -101,7 +108,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	sessions = make(map[string]*User)
+	users = make(map[string]*User)
 
 	es := gomodoro.NewEventStore()
 	defer es.Close()
