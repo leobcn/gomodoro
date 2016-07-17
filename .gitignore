@@ -22,3 +22,7 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+credentials.json
+gomodoro_server
+bindata.go
